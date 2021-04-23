@@ -24,3 +24,4 @@ use Illuminate\Http\Request;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('mahasiswa', MahasiswaController::class);
+Route::get('mahasiswa/nilai/{Nim}', [MahasiswaController::class, 'nilai'])->name('mahasiswa.nilai');

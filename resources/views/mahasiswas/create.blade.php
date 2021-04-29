@@ -31,6 +31,10 @@
                         <input type="Nama" name="Nama" class="form-control" id="Nama" aria-describedby="Nama" > 
                     </div>
                     <div class="form-group">
+                        <label for="image">Foto</label> 
+                        <input type="image" name="image" class="form-control" id="image" aria-describedby="image" > 
+                    </div>
+                    <div class="form-group">
                         <label for="Tanggal_Lahir">Tanggal_Lahir</label> 
                         <input type="date" name="Tanggal_Lahir" class="form-control" id="Tanggal_Lahir" aria-describedby="Tanggal_Lahir" > 
                     </div>

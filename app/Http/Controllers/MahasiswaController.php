@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use App\Models\MataKuliah; 
@@ -50,24 +51,18 @@ class MahasiswaController extends Controller
         $request->validate([
             'Nim' => 'required',
             'Nama' => 'required',
-            'image' => 'required',
             'Tanggal_Lahir' => 'required',
             'kelas' => 'required',
             'Jurusan' => 'required',
             'Email' => 'required',
             'No_Handphone' => 'required',
             ]);
-        if ($request->file('image')) 
-        {
-            $image_name = $request->file('image')->store('images', 'public');
-        }
 
             $kelas = Kelas::find($request->get('kelas'));
 
             $Mahasiswa = new Mahasiswa;
             $Mahasiswa->Nim = $request->get('Nim');
             $Mahasiswa->Nama = $request->get('Nama');
-            $Mahasiswa->image = $image_name;
             $Mahasiswa->Tanggal_Lahir = $request->get('Tanggal_Lahir');
             $Mahasiswa->Jurusan = $request->get('Jurusan');
             $Mahasiswa->Email = $request->get('Email');
@@ -125,7 +120,6 @@ class MahasiswaController extends Controller
         $request->validate([
             'Nim' => 'required',
             'Nama' => 'required',
-            'image' => 'required',
             'Tanggal_Lahir' => 'required',
             'kelas' => 'required',
             'Jurusan' => 'required',
@@ -134,15 +128,6 @@ class MahasiswaController extends Controller
         ]);
 
         $mahasiswas = Mahasiswa::with('kelas')->where('Nim', $Nim)->first();
-
-        // jika file gambar pada artikel tersebut telah tersedia, maka file yang lama akan dihapus
-        if ($Mahasiswa->image && file_exists(storage_path('app/public/' .$Mahasiswa->image))) {
-            \Storage::delete(['public/' . $Mahasiswa->image]);
-        }
-        // namun, jika file gambar masih belum ada, maka file baru yang diupload akan disimpan
-        $image_name = $request->file('image')->store('images', 'public');
-        $Mahasiswa->image = $image_name;
-
         $mahasiswas->Nim = $request->get('Nim');
         $mahasiswas->Nama = $request->get('Nama');
         $mahasiswas->Tanggal_Lahir = $request->get('Tanggal_Lahir');
@@ -181,5 +166,12 @@ class MahasiswaController extends Controller
     {
         $Mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->find($Nim);
         return view('mahasiswas.nilai', compact('Mahasiswa'));
+    }
+
+    public function cetak_khs($Nim) 
+    {
+        $Mahasiswa = Mahasiswa::findOrFail($Nim);
+        $pdf = PDF::loadview('mahasiswas.khs_pdf',['Mahasiswa'=>$Mahasiswa]);
+        return $pdf->stream();
     }
 }

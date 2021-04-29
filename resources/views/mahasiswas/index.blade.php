@@ -49,8 +49,7 @@
     
             <td>{{ $Mahasiswa->Nim }}</td>
             <td>{{ $Mahasiswa->Nama }}</td>
-            <td><img width="100px" height="100px" src="{{asset('storage/' .$Mahasiswa->image)}}">
-            </td>
+            <td><img width="100px" height="100px" src="{{asset('storage/' .$Mahasiswa->image)}}"></td>
             <td>{{ $Mahasiswa->Tanggal_Lahir }}</td>
             <td>{{ $Mahasiswa->kelas->nama_kelas }}</td>
             <td>{{ $Mahasiswa->Jurusan }}</td>

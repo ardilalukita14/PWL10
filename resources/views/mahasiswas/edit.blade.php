@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->Nim) }}" id="myForm">
+                <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->Nim) }}" id="myForm" enctype="multipart/form-data">
                 @csrf
                 @method('PUT') 
                     <div class="form-group">
@@ -63,6 +63,7 @@
                         <label for="No_Handphone">No_Handphone</label>  
                         <input type="No_Handphone" name="No_Handphone" class="form-control" id="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}" aria-describedby="No_Handphone" > 
                     </div>
+                    
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

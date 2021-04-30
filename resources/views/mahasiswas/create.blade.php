@@ -20,9 +20,9 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm">
+                <form method="post" action="{{ route('mahasiswa.store') }}" id="myForm" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="Nim">Nim</label> 
                         <input type="text" name="Nim" class="form-control" id="Nim" aria-describedby="Nim" > 
                     </div>
@@ -39,12 +39,12 @@
                         <input type="date" name="Tanggal_Lahir" class="form-control" id="Tanggal_Lahir" aria-describedby="Tanggal_Lahir" > 
                     </div>
                     <div class="form-group">
-                    <label for="kelas">Kelas</label>  
-                    <select type="kelas" name="kelas" class="form-control">
-                        @foreach($kelas as $kls)
-                            <option value="{{$kls->id}}">{{$kls->nama_kelas}}</option>
-                        @endforeach
-                    </select>
+                        <label for="kelas">Kelas</label>
+                        <select type="kelas" name="kelas" class="form-control" id="kelas">
+                            @foreach ($kelas as $kls)
+                                <option value="{{$kls->id}}">{{$kls->nama_kelas}}</option>
+                            @endforeach  
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label> 
@@ -58,7 +58,7 @@
                         <label for="No_Handphone">No_Handphone</label>            
                         <input type="No_Handphone" name="No_Handphone" class="form-control" id="No_Handphone" aria-describedby="No_Handphone" > 
                     </div>
-                   
+                    
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

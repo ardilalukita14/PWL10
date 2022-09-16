@@ -38,11 +38,11 @@
             <th>Nama</th>
             <th>Foto</th>
             <th>Tanggal_Lahir</th>
-            <th width="100px">Kelas</th>
+            <th>Kelas</th>
             <th>Jurusan</th>
             <th>Email</th>
             <th>No_Handphone</th>
-            <th width="400px">Action</th>
+            <th width="1200px">Action</th>
         </tr>
         @foreach ($mahasiswas as $Mahasiswa)
         <tr>
@@ -60,12 +60,11 @@
             <td>
             <form action="{{ route('mahasiswa.destroy',$Mahasiswa->Nim) }}" method="POST">   
                 <a class="btn btn-info" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
-                <br><br>
                 <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
                 <br><br>
                 @csrf 
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">Hapus</button>
                 <br><br>
                 <a class="btn btn-warning" href="{{ route('mahasiswa.nilai',$Mahasiswa->Nim) }}">Nilai</a>
             </form>

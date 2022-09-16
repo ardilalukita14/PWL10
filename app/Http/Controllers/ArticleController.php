@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PDF;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Session;
 
 class ArticleController extends Controller
 {
@@ -13,9 +14,15 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->has('search')){ // Jika ingin melakukan pencarian nama
+            $articles = Article::where('title', 'like', "%".$request->search."%")->paginate(3);
+           } else { // Jika tidak melakukan pencarian nama
+            //fungsi eloquent menampilkan data menggunakan pagination
+            $articles = Article::orderBy('id', 'desc')->paginate(5); // Pagination menampilkan 5 data
+        }
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -34,18 +41,20 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        if ($request->file('image')) {
-            $image_name = $request->file('image')->store('images', 'public');
+        $article = new Article;
+        $article->title = request('title');
+        $article->content= request('content');
+        $article->featured_image = request()->file('image')->store('images', 'public');
+        $article->save();
+        if ($article) {
+            Session::flash('success','Sukses Tambah Data'); 
+            return redirect()->route('articles.index');
+        } else {
+            Session::flash('success','Failed Tambah Data');
+            return redirect()->route('articles.index');
         }
-
-        Article::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'featured_image' => $image_name,
-        ]);
-        return 'Artikel berhasil disimpan';
     }
 
     /**
@@ -109,7 +118,9 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        Article::find($id)->delete();
+        return redirect()->route('articles.index')
+            -> with('success', 'Artikel Berhasil Dihapus');
     }
 
     public function cetak_pdf() {

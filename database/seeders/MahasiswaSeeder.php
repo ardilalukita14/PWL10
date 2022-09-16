@@ -19,7 +19,7 @@ class MahasiswaSeeder extends Seeder
                 'Nim' => '1941720098',
                 'Nama' => 'Andien Karmila',
                 'Tanggal_Lahir' => '2001-08-18',
-                'Kelas' => 'AK-3B',
+                'kelas_id' => '29',
                 'Jurusan' => 'Teknologi Informasi',
                 'Email' => 'karmilandin23@gmail.com',
                 'No_Handphone' => '085671092328'
@@ -28,7 +28,7 @@ class MahasiswaSeeder extends Seeder
                 'Nim' => '2078906775',
                 'Nama' => 'Windha ayu',
                 'Tanggal_Lahir' => '1999-11-13',
-                'Kelas' => 'TI-4D',
+                'kelas_id' => '40',
                 'Jurusan' => 'Teknologi Informasi',
                 'Email' => 'wirdada1@gmail.com',
                 'No_Handphone' => '082567809322'
@@ -37,7 +37,7 @@ class MahasiswaSeeder extends Seeder
                 'Nim' => '1941720040',
                 'Nama' => 'Ahmad Danu',
                 'Tanggal_Lahir' => '1999-01-15',
-                'Kelas' => 'TI-3A',
+                'kelas_id' => '28',
                 'Jurusan' => 'Teknologi Informasi',
                 'Email' => 'ahmadanu01@gmail.com',
                 'No_Handphone' => '085679032567'
@@ -46,8 +46,8 @@ class MahasiswaSeeder extends Seeder
                 'Nim' => '1941890765',
                 'Nama' => 'Ifan Kurnia',
                 'Tanggal_Lahir' => '2001-09-20',
-                'Kelas' => 'AK-2F',
-                'Jurusan' => 'Akuntansi',
+                'kelas_id' => '24',
+                'Jurusan' => 'Teknologi Informasi',
                 'Email' => 'ifankur20@gmail.com',
                 'No_Handphone' => '081334567800'
             ]
